@@ -12,15 +12,23 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user_name',
+        'first_name',
+        'last_name',
+        'gender',
+        'birthday',
         'email',
+        'phone',
         'password',
+        'point',
     ];
 
     /**
@@ -42,4 +50,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isAdmin(): bool
+    {
+        return $this->user_type === 'admin';
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'user_id');
+    }
 }

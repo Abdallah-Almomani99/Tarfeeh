@@ -21,6 +21,15 @@
                 @endif
  --}}
 
+                <div class="row mb-3">
+                    <label for="user_name" class="col-sm-2 col-form-label">User Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="user_name" value="{{ old('user_name') }}">
+                        @error('user_name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
 
                 <div class="row mb-3">
                     <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
@@ -44,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+
                 <fieldset class="row mb-3">
                     <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                     <div class="col-sm-10">
@@ -66,6 +76,17 @@
                         @enderror
                     </div>
                 </fieldset>
+
+                <div class="row mb-3">
+                    <label for="birthday" class="col-sm-2 col-form-label">Birthday</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="birthday" value="{{ old('birthday') }}">
+                        @error('birthday')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="row mb-3">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('user_name', 50)->unique(); // Primary key
             $table->string('first_name', 20); // Max length of 50 characters
             $table->string('last_name', 20);  // Max length of 50 characters
+            $table->string('user_type')->default('user');
             $table->enum('gender', ['male', 'female']); // Restrict values to 'male' or 'female'
             $table->string('email')->unique(); // Unique email
             $table->string('phone', 10)->unique(); // Unique phone number, max length 15

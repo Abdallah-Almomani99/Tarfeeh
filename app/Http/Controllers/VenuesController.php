@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VenueAuthentication;
+use App\Models\Venue;
 use Illuminate\Http\Request;
 
 class VenuesController extends Controller
@@ -11,7 +13,8 @@ class VenuesController extends Controller
      */
     public function index()
     {
-        return view('admin.venues.index');
+        $data = Venue::all();
+        return view('admin.venues.index', compact('data'));
     }
 
     /**
@@ -25,9 +28,11 @@ class VenuesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VenueAuthentication $request)
     {
-        //
+        $validatedData = $request->validated();
+        Venue::create($validatedData);
+        return redirect('/admin/venues')->with('success', 'Venue Added Successfully!');
     }
 
     /**
@@ -43,15 +48,19 @@ class VenuesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Venue::findOrFail($id);
+        return view('admin.venues.update', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(VenueAuthentication $request, string $id)
     {
-        //
+        $validatedData = $request->validated();
+        $venue = Venue::findOrFail($id);
+        $venue->update($validatedData);
+        return redirect('/admin/venues')->with('success', 'Venue Updated Successfully!');
     }
 
     /**
@@ -59,6 +68,8 @@ class VenuesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $venue = Venue::findOrFail($id);
+        $venue->delete();
+        return redirect('/admin/venues')->with('success', 'Venue Deleted Successfully!');
     }
 }

@@ -20,33 +20,43 @@
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Phone Number</th>
                             <th scope="col">Longitude</th>
                             <th scope="col">Latitude</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Price Range</th>
                             <th scope="col">Action</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Alien</td>
-                            <td>Video game Center</td>
-                            <td>Both</td>
-                            <td>33.213123</td>
-                            <td>33.214321</td>
-                            <td>079-9999999</td>
-                            <td>5 - 10$</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-success"><i class="bi bi-eye-fill"></i></button>
-                                    <button type="button" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                        @php
+                            $counter = 1;
+                        @endphp
+                        @foreach ($data as $venue)
+                            <tr>
+                                <th scope="row">{{ $counter++ }}</th>
+                                <td>{{ $venue['name'] }}</td>
+                                <td>{{ $venue['description'] }}</td>
+                                <td>{{ $venue['type'] }}</td>
+                                <td>{{ $venue['phone'] }}</td>
+                                <td>{{ $venue['longitude'] }}</td>
+                                <td>{{ $venue['latitude'] }}</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-success"><i
+                                                class="bi bi-eye-fill"></i></button>
+                                        <a href="{{ route('venues.edit', $venue['venue_id']) }}" class="btn btn-warning">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <form action="{{ route('venues.destroy', $venue['venue_id']) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger" onclick="confirmDelete(this)"><i
+                                                    class="bi bi-trash-fill"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

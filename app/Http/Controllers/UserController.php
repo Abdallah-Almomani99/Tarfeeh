@@ -30,8 +30,9 @@ class UserController extends Controller
      */
     public function store(UserAuthentication $request)
     {
-        $request->validated();
-        return redirect('/admin/users');
+        $validatedData = $request->validated();
+        User::create($validatedData);
+        return redirect('/admin/users')->with('success', 'User Added Successfully!');
     }
 
     /**
@@ -39,13 +40,19 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = User::findOrFail($id);
+        return view('admin.users.show', compact('data'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function admin()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function user()
     {
         //
     }
@@ -53,16 +60,32 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserAuthentication $request, string $id)
     {
-        //
+        // $validatedData = $request->validated();
+        // $user = User::findOrFail($id);
+        // $user->update($validatedData);
+        // return redirect('/admin/users')->with('success', 'User Updated Successfully!');
     }
 
+    public function toggleStatus(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Toggle the 'status' column between 'active' and 'inactive'
+        $user->status = $user->status === 'active' ? 'inactive' : 'active';
+        $user->save();
+
+        // Redirect back with a success message
+        return redirect()->route('users.index')->with('success', 'User status updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin/users')->with('success', 'User Deleted Successfully!');
     }
 }

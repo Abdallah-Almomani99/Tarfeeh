@@ -29,4 +29,9 @@ class Tag extends Model
      * @var array<int, string>
      */
     protected $fillable = ['tag_name'];
+
+    public function venues()
+    {
+        return $this->belongsToMany(Venue::class, 'venue_tag', 'tag_id', 'venue_id');
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserAuthentication extends FormRequest
 {
@@ -22,14 +24,14 @@ class UserAuthentication extends FormRequest
     public function rules(): array
     {
         return [
-            "user_name" => "required|string|max:50|unique:users,user_name," . $this->id, // Unique rule excluding the current user
+            'user_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             "first_name" => "required|string|max:50",
             "last_name" => "required|string|max:50",
             "gender" => "required|in:male,female",
             "birthday" => "required|date|before:today|after:100 years ago",
-            "email" => "required|email|unique:users,email," . $this->id,
+            "password" => "nullable",
             "phone" => "required|regex:/^[0-9]{10}$/",
-            "password" => "required|string|min:8",
             "point" => "nullable|integer|min:0",
         ];
     }

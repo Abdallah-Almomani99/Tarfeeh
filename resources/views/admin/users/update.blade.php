@@ -1,15 +1,27 @@
 @extends('layouts.base')
-@section('title', 'Edit Profile')
+@section('title', 'Create User')
 
 @section('content')
     <div class="col-sm-12 col-xl-8">
         <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Edit Profile</h6>
-            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+            <h6 class="mb-4">Edit User</h6>
+            <form action="{{ route('users.update', auth()->user()->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
 
-                <!-- User Name Input -->
+                {{-- @if ($errors->all())
+                    <div>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-danger">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+ --}}
+
                 <div class="row mb-3">
                     <label for="user_name" class="col-sm-2 col-form-label">User Name</label>
                     <div class="col-sm-10">
@@ -19,35 +31,29 @@
                         @enderror
                     </div>
                 </div>
-
-                <!-- First Name & Last Name -->
                 <div class="row mb-3">
                     <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="first_name"
                             value="{{ auth()->user()->first_name }}">
                     </div>
-
                     <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" name="last_name" value="{{ auth()->user()->last_name }}">
                     </div>
-                </div>
-
-                <div class="row col-ms-8">
-                    <div class="col-sm-6">
-                        @error('first_name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                    <div class="row col-ms-8">
+                        <div class="col-sm-6">
+                            @error('first_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-6">
+                            @error('last_name')
+                                <span class="text-danger ms-2">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        @error('last_name')
-                            <span class="text-danger ms-2">{{ $message }}</span>
-                        @enderror
-                    </div>
                 </div>
-
-                <!-- Gender -->
                 <fieldset class="row mb-3">
                     <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                     <div class="col-sm-10">
@@ -71,7 +77,6 @@
                     </div>
                 </fieldset>
 
-                <!-- Birthday -->
                 <div class="row mb-3">
                     <label for="birthday" class="col-sm-2 col-form-label">Birthday</label>
                     <div class="col-sm-10">
@@ -82,7 +87,6 @@
                     </div>
                 </div>
 
-                <!-- Email -->
                 <div class="row mb-3">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
@@ -92,11 +96,15 @@
                         @enderror
                     </div>
                 </div>
-
-
-
-
-                <!-- Phone -->
+                <div class="row mb-3">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="password">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
                 <div class="row mb-3">
                     <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-10">
@@ -107,36 +115,7 @@
                         @enderror
                     </div>
                 </div>
-
-                <!-- Profile Image Upload -->
-                <div class="row mb-3">
-                    <label for="image" class="col-sm-2 col-form-label">Profile Image</label>
-                    <div class="col-sm-10">
-                        <input type="file" class="form-control" name="image">
-                        @error('image')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                        @if (auth()->user()->image)
-                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="Current Image"
-                                class="img-fluid mt-2" style="width: 100px;">
-                        @endif
-                    </div>
-                </div>
-                <!-- Password -->
-                <div class="row mb-3">
-                    <label for="password" class="col-sm-2 col-form-label">Password</label>
-                    @error('password')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                    <div class="col-sm-10">
-                        <!-- Reset Password Button -->
-                        <a href="{{ route('profile.passEdit') }}" class="btn btn-secondary w-100">Reset
-                            Password</a>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                <button type="submit" class="btn btn-primary w-100">Update</button>
             </form>
         </div>
     </div>

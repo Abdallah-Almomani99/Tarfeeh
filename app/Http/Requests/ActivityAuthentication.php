@@ -32,6 +32,8 @@ class ActivityAuthentication extends FormRequest
             'capacity' => 'required|integer|min:1', // Capacity must be at least 1
             'created_at' => 'nullable|date', // Optional; must be a valid date
             'updated_at' => 'nullable|date', // Optional; must be a valid date
+            'images' => 'nullable|array',  // Ensure it's an array if provided
+            'images.*' => 'image|mimes:jpg,jpeg,png,gif|nullable|max:10240',
         ];
     }
 

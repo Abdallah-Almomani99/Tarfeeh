@@ -33,4 +33,14 @@ class Venue extends Model
     {
         return $this->hasMany(Booking::class, 'venue_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(VenueImage::class, 'venue_id'); // Specify the foreign key if needed
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,  'venue_tag', 'venue_id', 'tag_id');
+    }
 }

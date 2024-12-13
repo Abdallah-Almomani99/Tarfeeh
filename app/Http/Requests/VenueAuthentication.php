@@ -21,6 +21,7 @@ class VenueAuthentication extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -29,8 +30,10 @@ class VenueAuthentication extends FormRequest
             'longitude' => 'required|numeric|between:-180,180',
             'latitude' => 'required|numeric|between:-90,90',
             'price_range' => 'nullable|string|max:50',
-            'open_time' => 'required|date_format:H:i', // Validates as time in HH:MM format
-            'close_time' => 'required|date_format:H:i|after:open_time', // Validates as time and ensures it is after open_time
+            'open_time' => 'required', //|date_format:H:i',  Validates as time in HH:MM format
+            'close_time' => 'required', //|date_format:H:i|after:open_time', // Validates as time and ensures it is after open_time
+            'tags' => 'nullable|array', // Expect tags as an array
+            // 'tags.*' => 'exists:tags,tag_id', // Validate that each tag ID exists in the tags table
             'created_at' => 'nullable|date', // If manually set, must be a valid date
             'updated_at' => 'nullable|date', // If manually set, must be a valid date
         ];

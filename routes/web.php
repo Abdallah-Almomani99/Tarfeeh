@@ -36,6 +36,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
+        Route::post('storeTags', 'storeTags')->name('storeTags');
         Route::get('show/{id}', 'show')->name('show');
         Route::get('edit/{id}', 'edit')->name('edit');
         Route::patch('update/{id}', 'update')->name('update');
@@ -84,6 +85,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::delete('delete/{id}', 'destroy')->name('destroy');
         Route::patch('{id}/update-status', 'updateStatus')->name('update-status');
     });
+
+
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', 'edit')->name('edit');
+        Route::patch('/', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('destroy');
+        Route::get('password', 'passEdit')->name('passEdit');
+    });
 });
 
 /*
@@ -91,12 +100,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 | User Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->group(function () {
-    // User Profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 /*
 |--------------------------------------------------------------------------

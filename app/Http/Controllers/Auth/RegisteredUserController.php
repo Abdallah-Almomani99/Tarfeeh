@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
             'phone' => ['required', 'regex:/^[0-9]{10}$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'point' => ['nullable', 'integer', 'min:0'],
+            'image' => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,webp', 'max:2048'],
         ]);
 
         $user = User::create([
@@ -65,6 +66,7 @@ class RegisteredUserController extends Controller
             'user_type' => 'user',
             'password' => Hash::make($request->password),
             'point' => $request->point ?? 0, // Default to 0 if not provided
+            'image' => 'default.png',
         ]);
 
         event(new Registered($user));

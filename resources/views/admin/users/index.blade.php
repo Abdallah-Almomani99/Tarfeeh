@@ -22,8 +22,6 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">User Name</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Birthday</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Role</th>
@@ -39,8 +37,6 @@
                             <tr>
                                 <th scope="row">{{ $counter++ }}</th>
                                 <td>{{ $user['user_name'] }}</td>
-                                <td>{{ $user['gender'] }}</td>
-                                <td>{{ $user['birthday'] }}</td>
                                 <td>{{ $user['email'] }}</td>
                                 <td>{{ $user['phone'] }}</td>
                                 <td>{{ $user['user_type'] }}</td>

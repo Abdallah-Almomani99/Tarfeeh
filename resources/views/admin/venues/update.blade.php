@@ -1,27 +1,29 @@
 @extends('layouts.base')
-@section('title', 'Create Venue')
+@section('title', 'Edit Venue')
 
 @section('content')
-
     <div class="col-sm-12 col-xl-8">
         <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Add New Venue</h6>
-            <form action="{{ route('venues.store') }}" method="POST" enctype="multipart/form-data">
+            <h6 class="mb-4">Edit Venue</h6>
+            <form action="{{ route('venues.update', $data->venue_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
+
                 <div class="row mb-3">
                     <label for="name" class="col-sm-2 col-form-label">Venue</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" value="{{ old('name') }}" name="name"
+                        <input type="text" class="form-control" name="name" value="{{ $data->name }}"
                             placeholder="Venue Name">
                     </div>
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="row mb-3">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" value="{{ old('description') }}" name="description">
+                        <input type="text" class="form-control" name="description" value="{{ $data->description }}">
                     </div>
                     @error('description')
                         <span class="text-danger">{{ $message }}</span>
@@ -33,21 +35,21 @@
                     <div class="col-sm-10">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="type" id="male" value="male"
-                                {{ old('type') == 'male' ? 'checked' : '' }}>
+                                {{ $data->type == 'male' ? 'checked' : '' }}>
                             <label class="form-check-label" for="male">
                                 Male
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="type" id="female" value="female"
-                                {{ old('type') == 'female' ? 'checked' : '' }}>
+                                {{ $data->type == 'female' ? 'checked' : '' }}>
                             <label class="form-check-label" for="female">
                                 Female
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="type" id="both" value="both"
-                                {{ old('type') == 'both' ? 'checked' : '' }}>
+                                {{ $data->type == 'both' ? 'checked' : '' }}>
                             <label class="form-check-label" for="both">
                                 Both
                             </label>
@@ -58,12 +60,11 @@
                     </div>
                 </fieldset>
 
-
                 <div class="row mb-3">
                     <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-10">
                         <input type="tel" class="form-control" name="phone" placeholder="Phone Number"
-                            pattern="07[7-9][0-9]{7}" value="{{ old('phone') }}" required>
+                            pattern="07[7-9][0-9]{7}" value="{{ $data->phone }}" required>
                         @error('phone')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -73,11 +74,11 @@
                 <div class="row mb-3">
                     <label for="open_time" class="col-sm-2 col-form-label">Open</label>
                     <div class="col-sm-4">
-                        <input type="time" class="form-control" name="open_time" value="{{ old('open_time') }}">
+                        <input type="time" class="form-control" name="open_time" value="{{ $data->open_time }}">
                     </div>
                     <label for="close_time" class="col-sm-2 col-form-label">Close</label>
                     <div class="col-sm-4">
-                        <input type="time" class="form-control" name="close_time" value="{{ old('close_time') }}">
+                        <input type="time" class="form-control" name="close_time" value="{{ $data->close_time }}">
                     </div>
                     <div class="row col-ms-8">
                         <div class="col-sm-6">
@@ -93,7 +94,6 @@
                     </div>
                 </div>
 
-                <!-- New input for multiple images -->
                 <div class="row mb-3">
                     <label for="images" class="col-sm-2 col-form-label">Images</label>
                     <div class="col-sm-10">
@@ -107,11 +107,11 @@
                 <div class="row mb-3">
                     <label for="longitude" class="col-sm-2 col-form-label">Longitude</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="longitude" value="{{ old('longitude') }}">
+                        <input type="text" class="form-control" name="longitude" value="{{ $data->longitude }}">
                     </div>
                     <label for="latitude" class="col-sm-2 col-form-label">Latitude</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="latitude" value="{{ old('latitude') }}">
+                        <input type="text" class="form-control" name="latitude" value="{{ $data->latitude }}">
                     </div>
                     <div class="row col-ms-8">
                         <div class="col-sm-6">
@@ -132,7 +132,6 @@
                         Select Tags
                     </button>
                 </div>
-
                 <!-- Hidden Input to Store Selected Tags -->
                 <input type="hidden" name="tags[]" id="selectedTags">
 
@@ -158,13 +157,15 @@
                                     @foreach ($allTags as $tag)
                                         <div class="form-check">
                                             <input class="form-check-input tag-checkbox" type="checkbox"
-                                                value="{{ $tag->tag_id }}" id="tag-{{ $tag->tag_id }}">
+                                                value="{{ $tag->tag_id }}" id="tag-{{ $tag->tag_id }}"
+                                                {{ in_array($tag->tag_id, $attachedTags) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="tag-{{ $tag->tag_id }}">
                                                 {{ $tag->tag_name }}
                                             </label>
                                         </div>
                                     @endforeach
                                 </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -174,12 +175,10 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Create New Venue</button>
+                <button type="submit" class="btn btn-primary w-100">Update Venue</button>
             </form>
-
         </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -220,5 +219,4 @@
             });
         });
     </script>
-
 @endsection

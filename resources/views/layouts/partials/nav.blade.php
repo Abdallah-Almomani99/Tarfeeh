@@ -78,13 +78,15 @@
         </div>
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="{{ asset('assets/img/user.jpg') }}" alt=""
+                <img class="rounded-circle me-lg-2" src="{{ asset('storage/' . auth()->user()->image) }}" alt=""
                     style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">John Doe</span>
+                <span class="d-none d-lg-inline-flex">{{ auth()->user()->first_name }}
+                    {{ auth()->user()->last_name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">My Profile</a>
-                <a href="#" class="dropdown-item">Settings</a>
+                <a href="{{ route('profile.edit') }}" class="dropdown-item">Settings</a>
+
 
                 <!-- Log Out -->
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">

@@ -41,19 +41,31 @@
                                 <td>{{ $venue['longitude'] }}</td>
                                 <td>{{ $venue['latitude'] }}</td>
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-success"><i
-                                                class="bi bi-eye-fill"></i></button>
-                                        <a href="{{ route('venues.edit', $venue['venue_id']) }}" class="btn btn-warning">
+                                    <div class="d-flex justify-content-start align-items-center gap-2">
+                                        <!-- View Button -->
+                                        <a href="{{ route('venues.show', $venue->venue_id) }}"
+                                            class="btn btn-outline-primary" data-bs-toggle="tooltip" title="View Venue">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
+
+                                        <!-- Edit Button -->
+                                        <a href="{{ route('venues.edit', $venue->venue_id) }}"
+                                            class="btn btn-outline-warning" data-bs-toggle="tooltip" title="Edit Venue">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('venues.destroy', $venue['venue_id']) }}" method="POST">
+
+                                        <!-- Delete Form -->
+                                        <form action="{{ route('venues.destroy', $venue->venue_id) }}" method="POST"
+                                            class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-danger" onclick="confirmDelete(this)"><i
-                                                    class="bi bi-trash-fill"></i></button>
+                                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="tooltip"
+                                                title="Delete Venue" onclick="confirmDelete(this)">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
                                         </form>
                                     </div>
+
                                 </td>
                             </tr>
                         @endforeach

@@ -19,6 +19,24 @@
                     @enderror
                 </div>
                 <div class="row mb-3">
+                    <label for="category_id" class="col-sm-2 col-form-label">Category</label>
+                    <div class="col-sm-10">
+                        <select name="category_id" class="form-control">
+                            <option value="" disabled selected>Select a Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->category_id }}"
+                                    {{ old('category_id') == $category->category_id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('category_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="row mb-3">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" value="{{ old('description') }}" name="description">

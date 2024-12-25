@@ -4,7 +4,7 @@
     <nav class="navbar bg-light navbar-light">
         <a href="/admin/dashboard" class="navbar-brand mx-4 mb-3">
             <h3 class="text-primary"><img class="pb-1" width="22px" height="32px"
-                    src="{{ asset('assets/img/Tarfeh.png') }}" alt="">arfeeh</h3>
+                    src="{{ asset('assets/admin_assets/img/Tarfeh.png') }}" alt="">arfeeh</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
@@ -30,6 +30,8 @@
                     class="bi bi-grid-1x2-fill"></i>Activities</a>
             <a href="{{ route('bookings.index') }}"" class="nav-item nav-link  @yield ('booking-active')"><i
                     class="bi bi-calendar-event-fill"></i>Bookings</a>
+            <a href="{{ route('categories.index') }}"" class="nav-item nav-link  @yield ('category-active')"><i
+                    class="bi bi-grid-fill"></i>Categories</a>
             <a href="{{ route('tags.index') }}"" class="nav-item nav-link  @yield ('tag-active')"><i
                     class="bi bi-tags-fill"></i>Tags</a>
             <a href="{{ route('contacts.index') }}"" class="nav-item nav-link  @yield ('contact-active')"><i

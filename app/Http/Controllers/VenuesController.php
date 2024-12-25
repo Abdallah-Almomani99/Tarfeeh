@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Venue;
 use App\Models\VenueImage;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\VenueAuthentication;
@@ -25,8 +26,9 @@ class VenuesController extends Controller
      */
     public function create()
     {
-        $allTags = Tag::all(); // Fetch all tags from the Tag model
-        return view('admin.venues.create', compact('allTags')); // Pass $allTags to the view
+        $categories = Category::all();
+        $allTags = Tag::all();
+        return view('admin.venues.create', compact('allTags', 'categories')); // Pass $allTags and categories to the view
     }
 
     /**

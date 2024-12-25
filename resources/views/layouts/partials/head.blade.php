@@ -6,7 +6,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{ asset('/assets/img/favicon.ico') }}" rel="icon">
+    <link href="{{ asset('/assets/admin_assets/img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="{{ asset('https://fonts.googleapis.com') }}">
@@ -21,14 +21,15 @@
         rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin_assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin_assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}"
+        rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin_assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin_assets/css/style.css') }}" rel="stylesheet">
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

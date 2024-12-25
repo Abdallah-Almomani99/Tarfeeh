@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('description')->nullable(); // Optional description
             $table->enum('type', ['male', 'female', 'both']); // Restrict to specific venue types
             $table->string('phone', 15)->unique(); // Unique phone number, max length 15
-            $table->decimal('longitude', 10, 7); // Longitude, precision 10, scale 7
-            $table->decimal('latitude', 10, 7); // Latitude, precision 10, scale 7
+            $table->string('longitude', 17); // Longitude, precision 10, scale 7
+            $table->string('latitude', 17); // Latitude, precision 10, scale 7
             $table->string('price_range', 50)->default('medium'); // Price range with a default value
             $table->timestamps(); // Timestamps for created_at and updated_at
         });

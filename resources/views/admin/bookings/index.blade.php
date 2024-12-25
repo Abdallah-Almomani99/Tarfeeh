@@ -22,8 +22,6 @@
                             <th scope="col">User</th>
                             <th scope="col">Venue</th>
                             <th scope="col">Activity</th>
-                            <th scope="col">Booking Date</th>
-                            <th scope="col">Booking Time</th>
                             <th scope="col">Companions</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -39,9 +37,7 @@
                                 <td>{{ $booking->user->first_name }} {{ $booking->user->last_name }}</td>
                                 <td>{{ $booking->venue->name }}</td>
                                 <td>{{ $booking->activity->name }}</td>
-                                <td>{{ $booking->booking_date }}</td>
-                                <td>{{ $booking->booking_time }}</td>
-                                <td>{{ $booking->companions }}</td>
+                                <td class="text-center">{{ $booking->companions }}</td>
 
                                 <!-- Status Dropdown -->
                                 <td class="text-center">
@@ -67,6 +63,12 @@
                                         <a href="{{ route('bookings.show', $booking->booking_id) }}"
                                             class="btn btn-outline-primary" data-bs-toggle="tooltip" title="View Booking">
                                             <i class="bi bi-eye-fill"></i>
+                                        </a>
+
+                                        <!-- Edit Button -->
+                                        <a href="{{ route('bookings.edit', $booking->booking_id) }}"
+                                            class="btn btn-outline-warning" data-bs-toggle="tooltip" title="Edit Booking">
+                                            <i class="bi bi-pencil-square"></i>
                                         </a>
 
                                         <!-- Delete Form -->

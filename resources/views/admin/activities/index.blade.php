@@ -42,21 +42,26 @@
                                 <td>{{ $activity->allowed_age }}</td>
                                 <td>{{ $activity->capacity }}</td>
                                 <td>
-                                    <div class="btn-group" role="group">
+                                    <div class="d-flex justify-content-start align-items-center gap-2">
+                                        <!-- View Button -->
                                         <a href="{{ route('activities.show', $activity->activity_id) }}"
-                                            class="btn btn-success">
+                                            class="btn btn-outline-primary" data-bs-toggle="tooltip" title="View Venue">
                                             <i class="bi bi-eye-fill"></i>
                                         </a>
+
+                                        <!-- Edit Button -->
                                         <a href="{{ route('activities.edit', $activity->activity_id) }}"
-                                            class="btn btn-warning">
+                                            class="btn btn-outline-warning" data-bs-toggle="tooltip" title="Edit Venue">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
+
+                                        <!-- Delete Form -->
                                         <form action="{{ route('activities.destroy', $activity->activity_id) }}"
-                                            method="POST" style="display:inline-block;">
+                                            method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure?')">
+                                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="tooltip"
+                                                title="Delete Venue" onclick="confirmDelete(this)">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
                                         </form>

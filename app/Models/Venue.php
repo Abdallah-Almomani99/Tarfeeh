@@ -27,7 +27,16 @@ class Venue extends Model
         'price_range',
         'open_time',
         'close_time',
+        'category_id', // Foreign key for the category
     ];
+
+    /**
+     * Relationship: A venue belongs to a category.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
     public function bookings()
     {
@@ -36,11 +45,11 @@ class Venue extends Model
 
     public function images()
     {
-        return $this->hasMany(VenueImage::class, 'venue_id'); // Specify the foreign key if needed
+        return $this->hasMany(VenueImage::class, 'venue_id');
     }
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class,  'venue_tag', 'venue_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'venue_tag', 'venue_id', 'tag_id');
     }
 }

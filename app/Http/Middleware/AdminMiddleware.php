@@ -13,6 +13,10 @@ class AdminMiddleware
             return $next($request);
         }
 
+        if (Auth::check() && Auth::user()->user_type === 'user') {
+            return redirect('/home');
+        }
+
         return redirect('/')->with('error', 'Access denied!');
     }
 }

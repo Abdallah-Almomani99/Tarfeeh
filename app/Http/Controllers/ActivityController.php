@@ -42,7 +42,8 @@ class ActivityController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        return view('admin.activities.show', compact('activity'));
     }
 
     /**
@@ -50,8 +51,9 @@ class ActivityController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Activity::findOrFail($id);
-        return view('admin.activities.update', compact('data'));
+        $activity = Activity::findOrFail($id);
+        $venues = Venue::all();
+        return view('admin.activities.update', compact('activity', 'venues'));
     }
 
     /**

@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenuesController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\TagController;
-
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -87,6 +88,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     });
 
 
+
+    Route::prefix('categories')->name('categories.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::get('show/{id}', [CategoryController::class, 'show'])->name('show');
+        Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+        Route::patch('update/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('delete/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
+
+
     Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
         Route::get('/', 'edit')->name('edit');
         Route::patch('/', 'update')->name('update');
@@ -95,11 +109,29 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     });
 });
 
+Route::get('/home', [HomeController::class, 'showCategories'])->name('show.category');
+
+// Route::get('/home', function () {
+//     return view('user.home');
+// })->name('user.home');
+Route::get('/about', function () {
+    return view('user.about');
+})->name('user.about');
+Route::get('/venues', function () {
+    return view('user.venues');
+})->name('user.venues');
+Route::get('/venue', function () {
+    return view('user.single-venue');
+})->name('user.venue');
+Route::get('/contact', function () {
+    return view('user.contact');
+})->name('user.contact');
 /*
 |--------------------------------------------------------------------------
 | User Routes
 |--------------------------------------------------------------------------
 */
+Route::middleware(['auth', 'admin'])->group(function () {});
 
 /*
 |--------------------------------------------------------------------------

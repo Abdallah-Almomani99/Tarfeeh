@@ -28,8 +28,9 @@
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <a href="/login" class="navbar-brand mx-4 mb-3 " style="font-family: Nunito, sans-serif;">
                             <h1 class="text-primary text-center d-flex display-2 fw-bold"><img class="pb-2"
-                                    width="56px" height="82px" src="{{ asset('assets/img/Tarfeh.png') }}"
-                                    alt=""><b>arfeeh</b></h1>
+                                    width="56px" height="82px"
+                                    src="{{ asset('assets/admin_assets/img/Tarfeh.png') }}" alt=""><b>arfeeh</b>
+                            </h1>
                         </a>
 
                         <h3 class="text-center">Sign In</h3>

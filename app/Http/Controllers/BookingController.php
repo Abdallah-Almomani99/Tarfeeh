@@ -65,7 +65,8 @@ class BookingController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        return view('admin.bookings.show', compact('booking'));
     }
 
     /**
@@ -73,15 +74,26 @@ class BookingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Find the booking to edit
+        $booking = Booking::findOrFail($id);
+
+        // Get all users, venues, and activities for the dropdown options
+        $users = User::all();
+        $venues = Venue::all();
+        $activities = Activity::all();
+
+        return view('admin.bookings.update', compact('booking', 'users', 'venues', 'activities'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BookingAuthentication $request, string $id)
     {
-        //
+        $validatedData = $request->validated();
+        $booking = Booking::findOrFail($id);
+        $booking->update($validatedData);
+        return redirect('/admin/bookings')->with('success', 'Booking Updated Successfully!');
     }
 
     /**
@@ -89,6 +101,9 @@ class BookingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+
+        return redirect()->route('booking.index')->with('success', 'Booking deleted successfully!');
     }
 }

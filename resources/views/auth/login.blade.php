@@ -47,3 +47,162 @@
         </div>
     </form>
 </x-guest-layout>
+
+{{-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
+        color="#111" />
+
+
+
+
+    <script
+        src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js">
+    </script>
+
+
+    <title>animated form</title>
+
+    <link rel="canonical" href="https://codepen.io/technext/pen/WNpWeWw">
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+    <link rel="stylesheet" href="{{ asset('assets/login_assets/css/style.css') }}">
+
+
+</head>
+
+<body translate="no">
+    <div id="container" class="container">
+        <!-- FORM SECTION -->
+        <div class="row">
+            <!-- SIGN UP -->
+            <div class="col align-items-center flex-col sign-up">
+                <div class="form-wrapper align-items-center">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <div class="form sign-up">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" placeholder="Username">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bx-mail-send'></i>
+                                <input type="email" placeholder="Email">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Password">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Confirm password">
+                            </div>
+                            <button class="button2" type="submit">
+                                Sign up
+                            </button>
+                            <p>
+                                <span>
+                                    Already have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign in here
+                                </b>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- END SIGN UP -->
+            <!-- SIGN IN -->
+            <div class="col align-items-center flex-col sign-in">
+                <div class="form-wrapper align-items-center">
+                    <div class="form sign-in">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" name="email" placeholder="Username">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            <button class="button1" type="submit">
+                                Sign in
+                            </button>
+                            <p>
+                                <b>
+                                    Forgot password?
+                                </b>
+                            </p>
+                            <p>
+                                <span>
+                                    Don't have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign up here
+                                </b>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <div class="form-wrapper">
+
+                </div>
+            </div>
+            <!-- END SIGN IN -->
+        </div>
+        <!-- END FORM SECTION -->
+        <!-- CONTENT SECTION -->
+        <div class="row content-row">
+            <!-- SIGN IN CONTENT -->
+            <div class="col align-items-center flex-col">
+                <div class="text sign-in">
+                    <h2>
+                        Welcome
+                    </h2>
+
+                </div>
+                <div class="img sign-in">
+
+                </div>
+            </div>
+            <!-- END SIGN IN CONTENT -->
+            <!-- SIGN UP CONTENT -->
+            <div class="col align-items-center flex-col">
+                <div class="img sign-up">
+
+                </div>
+                <div class="text sign-up">
+                    <h2>
+                        Join with us
+                    </h2>
+
+                </div>
+            </div>
+            <!-- END SIGN UP CONTENT -->
+        </div>
+        <!-- END CONTENT SECTION -->
+    </div>
+    <script src="{{ asset('assets/login_assets/js/main.js') }}"></script>
+</body>
+
+</html> --}}

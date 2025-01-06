@@ -38,5 +38,5 @@
     <link rel="stylesheet" href="{{ asset('assets/user_assets/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/user_assets/css/swiper.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/user_assets/style.css') }}" />
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Pacifico" rel="stylesheet">
 </head>

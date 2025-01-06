@@ -5,6 +5,7 @@
 {{-- @section('dashboard-active', 'active') --}}
 <!-- Blank Start -->
 @section('content')
+
     @php
         $slides = App\Models\HeroSlide::all();
     @endphp

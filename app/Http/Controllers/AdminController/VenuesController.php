@@ -41,6 +41,8 @@ class VenuesController extends Controller
 
         $validatedData = $request->validated();
         $validatedData['user_id'] = '0';
+        $validatedData['status'] = 'active';
+
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('uploads/venues', 'public');
         }

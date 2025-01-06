@@ -1,10 +1,26 @@
-let container = document.getElementById("container");
+(function($) {
 
-toggle = () => {
-    container.classList.toggle("sign-in");
-    container.classList.toggle("sign-up");
-};
+	"use strict";
 
-setTimeout(() => {
-    container.classList.add("sign-in");
-}, 200);
+	var fullHeight = function() {
+
+		$('.js-fullheight').css('height', $(window).height());
+		$(window).resize(function(){
+			$('.js-fullheight').css('height', $(window).height());
+		});
+
+	};
+	fullHeight();
+
+	$(".toggle-password").click(function() {
+
+	  $(this).toggleClass("fa-eye fa-eye-slash");
+	  var input = $($(this).attr("toggle"));
+	  if (input.attr("type") == "password") {
+	    input.attr("type", "text");
+	  } else {
+	    input.attr("type", "password");
+	  }
+	});
+
+})(jQuery);

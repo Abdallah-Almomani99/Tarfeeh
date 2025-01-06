@@ -7,23 +7,27 @@
                 </figure>
 
                 <nav class="footer-navigation">
+                    <ul>
+                        <li>
+                            <p>Do you have a venue? Register with us now and reach more customers!<a
+                                    href="{{ route('register.venue') }}">Register</a></p>
+                        </li>
+                    </ul>
                     <ul class="flex flex-wrap justify-content-center align-items-center">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ route('show.category') }}">Home</a></li>
+                        <li><a href="{{ route('user.about') }}">About us</a></li>
+                        <li><a href="{{ route('venues.page') }}">Venues</a></li>
+                        <li><a href="{{ route('user.contact') }}">Contact</a></li>
                     </ul>
                 </nav>
+                <br>
 
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy;
                 <script>
                     document.write(new Date().getFullYear());
                 </script>
-                All rights reserved | This template is made with
-                <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                Happy with our site? Let us know!</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
                 <div class="footer-social">

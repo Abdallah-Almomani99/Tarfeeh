@@ -19,19 +19,11 @@
                     @enderror
                 </div>
                 <div class="row mb-3">
-                    <label for="category_id" class="col-sm-2 col-form-label">Category</label>
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
                     <div class="col-sm-10">
-                        <select name="category_id" class="form-control">
-                            <option value="" disabled selected>Select a Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->category_id }}"
-                                    {{ old('category_id') == $category->category_id ? 'selected' : '' }}>
-                                    {{ $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <input type="file" class="form-control" name="image" accept="image/*">
                     </div>
-                    @error('category_id')
+                    @error('image')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

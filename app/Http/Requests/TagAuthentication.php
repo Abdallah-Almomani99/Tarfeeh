@@ -22,7 +22,7 @@ class TagAuthentication extends FormRequest
     public function rules(): array
     {
         return [
-            'tag_name' => 'required|string|max:255|unique:tags,tag_name', // Ensures `tag_name` is unique, required, and a string
+            'tag_name' => 'required|string|max:255|unique:tags,tag_name,' . $this->route('id') . ',tag_id', // Exclude current tag by ID
         ];
     }
 

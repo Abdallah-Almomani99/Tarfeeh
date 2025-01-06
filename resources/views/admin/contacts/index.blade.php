@@ -10,14 +10,15 @@
                 <h6 class="m-2">Message Table</h6>
             </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="usersTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">User Name</th>
-                            <th scope="col">Message</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Show</th>
+                            <th scope="col" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,45 +26,32 @@
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $message->user->user_name }}</td>
+                                <td>{{ $message->email }}</td>
                                 <td>{{ $message->message }}</td>
-
+                                <td><a href="{{ route('contacts.show', $message->message_id) }}"
+                                        class="btn btn-outline-primary" data-bs-toggle="tooltip" title="View Message">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a></td>
                                 <!-- Status Dropdown -->
                                 <td class="text-center">
                                     <form action="{{ route('contacts.update-status', $message->message_id) }}"
                                         method="POST" style="display:inline;">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="form-select" onchange="this.form.submit()">
-                                            <option value="Pending" {{ $message->status === 'Pending' ? 'selected' : '' }}>
-                                                Pending
-                                            </option>
-                                            <option value="Resolved"
-                                                {{ $message->status === 'Resolved' ? 'selected' : '' }}>
-                                                Resolved
-                                            </option>
-                                        </select>
-                                    </form>
-                                </td>
 
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center gap-2">
-                                        <!-- View Button -->
-                                        <a href="{{ route('contacts.show', $message->message_id) }}"
-                                            class="btn btn-outline-primary" data-bs-toggle="tooltip" title="View Message">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-
-                                        <!-- Delete Form -->
-                                        <form action="{{ route('contacts.destroy', $message->message_id) }}" method="POST"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger" data-bs-toggle="tooltip"
-                                                title="Delete Message">
-                                                <i class="bi bi-trash-fill"></i>
+                                        @if ($message->status === 'Pending')
+                                            <button type="submit" name="status" value="Working" class="btn btn-warning">
+                                                Open
                                             </button>
-                                        </form>
-                                    </div>
+                                        @elseif($message->status === 'Working')
+                                            <button type="submit" name="status" value="Resolved" class="btn btn-primary">
+                                                Working
+                                            </button>
+                                        @else
+                                            {{ $message->status }}
+                                        @endif
+                                    </form>
+
                                 </td>
 
                             </tr>

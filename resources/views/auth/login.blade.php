@@ -1,3 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login 10</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="{{ asset('assets/login_assets/css/style.css') }}" />
+</head>
+
+<body class="img js-fullheight" style="background-image: url({{ asset('assets/login_assets/images/bg.jpg') }}">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0 mt-5">
+                        <h3 class="mb-4 text-center">Login</h3>
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <div>
+                                    <x-input-label for="email" :value="__('Email')" />
+                                    <x-text-input id="email" class="form-control" type="email" name="email"
+                                        :value="old('email')" required autofocus autocomplete="username" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <x-input-label for="password" :value="__('Password')" />
+
+                                <x-text-input id="password" class="form-control" type="password" name="password"
+                                    required autocomplete="current-password" />
+
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            </div>
+                            <div class="text-center mb-3">
+                                <a href="{{ route('register') }}">Register here</a>
+                            </div>
+
+                            <div class="form-group">
+                                <x-primary-button class="form-control btn btn-primary submit px-3">
+                                    {{ __('Log in') }}
+                                </x-primary-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ asset('assets/login_assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/login_assets/js/popper.js') }}"></script>
+    <script src="{{ asset('assets/login_assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/login_assets/js/main.js') }}"></script>
+</body>
+
+</html>
+
+{{-- 
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -8,8 +75,8 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -46,7 +113,10 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+
+
 
 {{-- 
 <!DOCTYPE html>

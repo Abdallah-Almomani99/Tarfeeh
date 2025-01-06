@@ -27,8 +27,10 @@ class User extends Authenticatable
         'birthday',
         'email',
         'phone',
+        'user_type',
         'password',
         'point',
+        'status',
         'image',
     ];
 
@@ -56,9 +58,17 @@ class User extends Authenticatable
     {
         return $this->user_type === 'admin';
     }
+    public function isVenue(): bool
+    {
+        return $this->user_type === 'venue';
+    }
 
     public function bookings()
     {
         return $this->hasMany(Booking::class, 'user_id');
+    }
+    public function venue()
+    {
+        return $this->hasOne(Venue::class, 'user_id');
     }
 }

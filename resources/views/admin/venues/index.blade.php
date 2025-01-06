@@ -13,16 +13,14 @@
                 </a>
             </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="usersTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Owner</th>
                             <th scope="col">Phone Number</th>
-                            <th scope="col">Longitude</th>
-                            <th scope="col">Latitude</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
 
                         </tr>
@@ -35,11 +33,25 @@
                             <tr>
                                 <th scope="row">{{ $counter++ }}</th>
                                 <td>{{ $venue['name'] }}</td>
-                                <td>{{ $venue['description'] }}</td>
-                                <td>{{ $venue['type'] }}</td>
+                                <td>
+                                    @if ($venue->user_id != 0)
+                                        {{ $venue->user->user_name }}
+                                    @else
+                                        {{ 'By Admin' }}
+                                    @endif
+                                </td>
                                 <td>{{ $venue['phone'] }}</td>
-                                <td>{{ $venue['longitude'] }}</td>
-                                <td>{{ $venue['latitude'] }}</td>
+                                <td class="text-center">
+                                    <form action="{{ route('venues.toggle-status', $venue->venue_id) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit"
+                                            class="btn btn-sm {{ $venue->status === 'active' ? 'btn-success' : 'btn-danger' }}">
+                                            {{ $venue->status === 'active' ? 'Activate' : 'Deactivate' }}
+                                        </button>
+                                    </form>
+                                </td>
                                 <td>
                                     <div class="d-flex justify-content-start align-items-center gap-2">
                                         <!-- View Button -->
@@ -74,5 +86,7 @@
             </div>
         </div>
     </div>
+
+
 @endsection('content')
 <!-- Blank End -->

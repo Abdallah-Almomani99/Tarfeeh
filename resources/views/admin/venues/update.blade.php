@@ -21,6 +21,16 @@
                 </div>
 
                 <div class="row mb-3">
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="image" accept="image/*">
+                    </div>
+                    @error('image')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="row mb-3">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" value="{{ $data->description }}">

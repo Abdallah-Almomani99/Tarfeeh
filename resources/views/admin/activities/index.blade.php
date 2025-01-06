@@ -13,17 +13,12 @@
                 </a>
             </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="usersTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Activity Name</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Allowed Age</th>
-                            <th scope="col">Capacity</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -36,11 +31,6 @@
                                 <th scope="row">{{ $counter++ }}</th>
                                 <td>{{ $activity->name }}</td>
                                 <td>{{ $activity->description }}</td>
-                                <td>{{ $activity->price }}</td>
-                                <td>{{ ucfirst($activity->gender) }}</td>
-                                <td>{{ $activity->duration }}</td>
-                                <td>{{ $activity->allowed_age }}</td>
-                                <td>{{ $activity->capacity }}</td>
                                 <td>
                                     <div class="d-flex justify-content-start align-items-center gap-2">
                                         <!-- View Button -->

@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="/admin/dashboard" class="nav-item nav-link @yield ('dashboard-active')"><i
+            <a href="{{ route('dashboard.index') }}" class="nav-item nav-link @yield ('dashboard-active')"><i
                     class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <a href="{{ route('users.index') }}" class="nav-item nav-link  @yield ('user-active')"><i
                     class="bi bi-people-fill"></i>Users</a>

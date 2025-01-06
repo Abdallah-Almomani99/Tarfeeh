@@ -23,6 +23,7 @@ class ActivityAuthentication extends FormRequest
     {
         return [
             'venue_id' => 'required|exists:venues,venue_id', // Must reference a valid venue ID
+            'category_id' => 'required|exists:categories,category_id', // Must reference a valid venue ID
             'name' => 'required|string|max:255', // Name must be a string and not exceed 255 characters
             'description' => 'nullable|string', // Optional description
             'price' => 'required|numeric|min:0', // Price must be a positive number

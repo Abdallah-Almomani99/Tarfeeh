@@ -1,5 +1,10 @@
 <!-- JavaScript Libraries -->
-<script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
+<!-- Add DataTables dependencies -->
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script> --}}
+{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" /> --}}
+
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/admin_assets/lib/chart/chart.min.js') }}"></script>
 <script src="{{ asset('assets/admin_assets/lib/easing/easing.min.js') }}"></script>
@@ -52,4 +57,28 @@
             }
         });
     }
+</script>
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable with pagination, search, and custom language settings
+        $('#usersTable').DataTable({
+            paging: true, // Enable pagination
+            searching: true, // Enable search
+            responsive: true, // Make the table responsive
+            order: [
+                [0, 'asc']
+            ], // Default order by the first column (ID/Counter)
+            language: {
+                search: "Search:", // Label for the search box
+                lengthMenu: "Show _MENU_ entries", // Dropdown to select the number of rows
+                info: "Showing _START_ to _END_ of _TOTAL_ entries", // Footer info text
+                paginate: {
+                    first: "First",
+                    last: "Last",
+                    next: "Next",
+                    previous: "Previous"
+                }
+            }
+        });
+    });
 </script>

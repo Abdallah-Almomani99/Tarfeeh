@@ -28,6 +28,7 @@ class Activity extends Model
         'capacity',
         'created_at',
         'updated_at',
+        'category_id', // Foreign key for the category
     ];
 
     /**
@@ -43,6 +44,10 @@ class Activity extends Model
     /**
      * Relationship with the Venue model.
      */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'category_id');
+    }
 
     public function venue()
     {

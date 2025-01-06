@@ -16,8 +16,10 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id('message_id'); // Primary key for the contacts table
             $table->unsignedBigInteger('user_id'); // Foreign key for the user
+            $table->string('email'); // Email of the sender
+            $table->string('subject'); // Subject of the message
             $table->text('message'); // The message content
-            $table->enum('status', ['Pending', 'Resolved'])->default('Pending'); // Status column
+            $table->enum('status', ['Pending', 'Resolved', 'Working'])->default('Pending'); // Status column
             $table->timestamps();
 
             // Foreign key constraint

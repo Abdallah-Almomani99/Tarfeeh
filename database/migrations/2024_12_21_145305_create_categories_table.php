@@ -14,22 +14,10 @@ class CreateCategoriesTable extends Migration
             $table->string('image')->nullable();
             $table->timestamps();
         });
-
-        Schema::table('venues', function (Blueprint $table) {
-            $table->foreignId('category_id')
-                ->nullable()
-                ->constrained('categories', 'category_id')
-                ->onDelete('set null');
-        });
     }
 
     public function down()
     {
-        Schema::table('venues', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-            $table->dropColumn('category_id');
-        });
-
         Schema::dropIfExists('categories');
     }
 }

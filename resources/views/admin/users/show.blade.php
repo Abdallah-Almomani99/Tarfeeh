@@ -12,11 +12,10 @@
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <img src="{{ asset('storage/' . $data->image) }}" alt="User Image"
+                        <img src="{{ asset('storage/uploads/' . $data->image) }}" alt="User Image"
                             class="rounded-circle img-thumbnail mb-3" style="width: 150px; height: 150px;">
                         <h5 class="card-title mb-1">{{ $data->user_name }}</h5>
                         <p class="text-muted">{{ $data->first_name }} {{ $data->last_name }}</p>
-                        <p class="text-muted">Bay Area, San Francisco, CA</p>
                     </div>
                 </div>
 

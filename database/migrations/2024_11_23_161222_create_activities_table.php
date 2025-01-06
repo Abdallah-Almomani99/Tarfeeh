@@ -14,6 +14,7 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id('activity_id'); // Primary Key
             $table->unsignedBigInteger('venue_id'); // Foreign Key
+            $table->unsignedBigInteger('category_id')->nullable(); // Foreign Key to Categories
             $table->string('name', 255);
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2); // Up to 999,999.99
@@ -23,8 +24,9 @@ class CreateActivitiesTable extends Migration
             $table->integer('capacity'); // Maximum number of participants
             $table->timestamps();
 
-            // Foreign Key Constraint
+            // Foreign Key Constraints
             $table->foreign('venue_id')->references('venue_id')->on('venues')->onDelete('cascade');
+            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('set null');
         });
     }
 
@@ -33,6 +35,11 @@ class CreateActivitiesTable extends Migration
      */
     public function down(): void
     {
+        Schema::table('activities', function (Blueprint $table) {
+            $table->dropForeign(['category_id']);
+            $table->dropColumn('category_id');
+        });
+
         Schema::dropIfExists('activities');
     }
 }

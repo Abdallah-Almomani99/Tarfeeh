@@ -3,6 +3,8 @@
 @section('title', 'Dashboard Users')
 @section('user-active', 'active')
 
+@section('user-table', 'text-dark')
+
 
 <!-- Blank Start -->
 @section('content')
@@ -11,20 +13,25 @@
     <div class="col-12">
         <div class="bg-light rounded h-100 p-4">
             <div class="mb-2 d-flex justify-content-between align-items-center">
-                <h6 class="m-2">User Table</h6>
-                <a href="{{ route('users.create') }}" class="btn btn-primary m-2">
-                    Add New User
-                </a>
+                <div class="d-flex">
+                    <h6 class="m-2 "><a href="{{ route('users.index') }}">User Table</a></h6>
+                    <span>/</span>
+                    <h6 class="m-2"><a class="@yield ('user-table')" href="{{ route('users.venue.index') }}">Venue
+                            Table</a></h6>
+                    <span>/</span>
+                    <h6 class="m-2"><a class="@yield ('user-table')" href="{{ route('users.admin.index') }}">Admin
+                            Table</a></h6>
+                </div>
+
             </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="usersTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">User Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
-                            <th scope="col">Role</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -39,7 +46,6 @@
                                 <td>{{ $user['user_name'] }}</td>
                                 <td>{{ $user['email'] }}</td>
                                 <td>{{ $user['phone'] }}</td>
-                                <td>{{ $user['user_type'] }}</td>
 
                                 <td class="text-center">
                                     <form action="{{ route('users.toggle-status', $user->id) }}" method="POST"

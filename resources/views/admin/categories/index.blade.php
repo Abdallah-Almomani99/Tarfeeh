@@ -13,7 +13,7 @@
                 </a>
             </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="usersTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

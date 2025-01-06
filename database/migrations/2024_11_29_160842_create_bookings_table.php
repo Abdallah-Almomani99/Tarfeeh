@@ -21,7 +21,7 @@ class CreateBookingsTable extends Migration
             $table->date('booking_date');
             $table->time('booking_time');
             $table->integer('companions'); // Number of companions
-            $table->enum('status', ['Pending', 'Confirmed', 'Cancelled'])->default('Pending'); // Status of the booking
+            $table->enum('status', ['Pending', 'Confirmed', 'Decline', 'Cancelled'])->default('Pending'); // Status of the booking
             $table->timestamps(); // created_at and updated_at
         });
     }

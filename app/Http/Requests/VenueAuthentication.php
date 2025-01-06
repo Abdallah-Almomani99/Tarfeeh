@@ -25,10 +25,11 @@ class VenueAuthentication extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'type' => 'required|string|max:100',
             'phone' => 'required|regex:/^[0-9]{10,15}$/|unique:venues,phone,' . $this->id . ',venue_id',
-            'longitude' => 'required|string',
-            'latitude' => 'required|string',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
             'price_range' => 'nullable|string|max:50',
             'open_time' => 'required', //|date_format:H:i',  Validates as time in HH:MM format
             'close_time' => 'required', //|date_format:H:i|after:open_time', // Validates as time and ensures it is after open_time

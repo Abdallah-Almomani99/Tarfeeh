@@ -25,10 +25,11 @@
                         <!-- .hamburger-menu -->
 
                         <ul>
-                            <li><a href="./home">Home</a></li>
-                            <li><a href="./about">About us</a></li>
-                            <li><a href="./venues">Venues</a></li>
-                            <li><a href="./contact">Contact</a></li>
+                            {{-- <li id="profile-link" hidden><a href="{{ route('user.profile.edit') }}">Profile</a></li> --}}
+                            <li><a href="{{ route('show.category') }}">Home</a></li>
+                            <li><a href="{{ route('user.about') }}">About us</a></li>
+                            <li><a href="{{ route('venues.page') }}">Venues</a></li>
+                            <li><a href="{{ route('user.contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                     <!-- .site-navigation -->
@@ -37,7 +38,7 @@
                 @guest
                     <div class="col-lg-3 d-none d-lg-block order-2 order-lg-3">
                         <div class="buy-tickets">
-                            <a class="btn gradient-bg" href={{ route('login') }}>Sign In / Up</a>
+                            <a class="btn gradient-bg" href={{ route('login') }}>Start Now</a>
                         </div>
                         <!-- .buy-tickets -->
                     </div>
@@ -45,11 +46,15 @@
                 @else
                     <div class="col-lg-3 d-none d-lg-block order-2 order-lg-3">
                         <div class="buy-tickets">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button class="btn gradient-bg" type="submit">Log Out</button>
-                            </form>
+                            <div class="d-flex">
+                                <a href="{{ route('user.profile.edit') }}" class="btn gradient-bg"><i
+                                        class="fa fa-user"></i></a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="btn gradient-bg ml-3" type="submit">Log Out</button>
+                                </form>
 
+                            </div>
                         </div>
                         <!-- .buy-tickets -->
                     </div>

@@ -25,8 +25,8 @@ class Category extends Model
     /**
      * Relationship: A category has many venues.
      */
-    public function venues()
+    public function activities()
     {
-        return $this->hasMany(Venue::class, 'category_id');
+        return $this->hasMany(Activity::class, 'category_id', 'category_id');
     }
 }

@@ -1,23 +1,55 @@
-<!-- Spinner Start -->
-<div id="spinner"
-    class="d-none bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-<!-- Spinner End -->
+<div class="loader"></div>
+
+<style>
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        transition: opacity 0.75s, visibility 0.75s;
+        z-index: 9999;
+        /* Ensure it overlays above all content */
+    }
+
+    .loader--hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader::after {
+        content: "";
+        width: 75px;
+        height: 75px;
+        border: 15px solid #dddddd;
+        border-top-color: #B837D8;
+        border-radius: 50%;
+        animation: loading 0.75s ease infinite;
+    }
+
+    @keyframes loading {
+        from {
+            transform: rotate(0turn);
+        }
+
+        to {
+            transform: rotate(1turn);
+        }
+    }
+</style>
 
 <script>
-    // Show spinner on page load
-    document.addEventListener("DOMContentLoaded", function() {
-        var spinner = document.getElementById('spinner');
-        spinner.classList.remove('d-none');
-        spinner.classList.add('show');
+    window.addEventListener("load", () => {
+        const loader = document.querySelector(".loader");
 
-        // Simulate loading
-        setTimeout(function() {
-            spinner.classList.remove('show');
-            spinner.classList.add('d-none');
-        }, 3000); // Adjust as needed
+        loader.classList.add("loader--hidden");
+
+        loader.addEventListener("transitionend", () => {
+            document.body.removeChild(loader);
+        });
     });
 </script>

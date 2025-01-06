@@ -19,24 +19,29 @@ class Venue extends Model
      */
     protected $fillable = [
         'name',
+        'user_id',
+        'image',
         'description',
         'type',
         'phone',
         'longitude',
         'latitude',
         'price_range',
+        'status',
         'open_time',
         'close_time',
-        'category_id', // Foreign key for the category
+
     ];
 
     /**
      * Relationship: A venue belongs to a category.
      */
-    public function category()
+
+    public function user()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
+
 
     public function bookings()
     {
@@ -46,6 +51,10 @@ class Venue extends Model
     public function images()
     {
         return $this->hasMany(VenueImage::class, 'venue_id');
+    }
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'venue_id');
     }
 
     public function tags()

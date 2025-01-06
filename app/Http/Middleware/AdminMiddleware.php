@@ -17,6 +17,8 @@ class AdminMiddleware
             return redirect('/home');
         }
 
+
+
         return redirect('/')->with('error', 'Access denied!');
     }
 }

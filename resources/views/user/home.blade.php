@@ -5,187 +5,57 @@
 {{-- @section('dashboard-active', 'active') --}}
 <!-- Blank Start -->
 @section('content')
-    <div class="swiper-container hero-slider">
+    @php
+        $slides = App\Models\HeroSlide::all();
+    @endphp
+
+    <div class="swiper-container hero-slider" style="height: 100vh">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" data-date="2018/05/01"
-                style="
-      background: url('{{ asset('assets/user_assets') }}/images/home-2.jpg') no-repeat;
-      background-size: cover;
-    ">
-                <div class="hero-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col flex flex-column justify-content-center">
-                                <div class="entry-header">
-                                    <div class="countdown flex align-items-center">
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dday"></span>
-                                            <label>Days</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
+            @foreach ($slides as $slide)
+                <div class="swiper-slide" data-date="{{ $slide->date }}"
+                    style="background: url('{{ asset('storage/' . $slide->image_path) }}') no-repeat; background-size: cover;">
+                    <div class="hero-content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col flex flex-column justify-content-center">
+                                    <div class="entry-header">
+                                        @if ($slide->date)
+                                            <div class="countdown flex align-items-center">
+                                                <div class="countdown-holder flex align-items-baseline">
+                                                    <span class="dday">0</span>
+                                                    <label>Days</label>
+                                                </div>
+                                                <!-- .countdown-holder -->
 
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dhour"></span>
-                                            <label>Hours</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
+                                                <div class="countdown-holder flex align-items-baseline">
+                                                    <span class="dhour">0</span>
+                                                    <label>Hours</label>
+                                                </div>
+                                                <!-- .countdown-holder -->
 
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dmin"></span>
-                                            <label>Minutes</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
+                                                <div class="countdown-holder flex align-items-baseline">
+                                                    <span class="dmin">0</span>
+                                                    <label>Minutes</label>
+                                                </div>
+                                                <!-- .countdown-holder -->
 
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dsec"></span>
-                                            <label>Seconds</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
+                                                <div class="countdown-holder flex align-items-baseline">
+                                                    <span class="dsec">0</span>
+                                                    <label>Seconds</label>
+                                                </div>
+                                                <!-- .countdown-holder -->
+                                            </div>
+                                        @endif
+                                        <h2 class="entry-title">{{ $slide->title }}</h2>
                                     </div>
-                                    <!-- .countdown -->
-
-                                    <h2 class="entry-title">
-                                        1 We have the best events. <br />Get your tiket now!
-                                    </h2>
                                 </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <a class="btn gradient-bg" href="#">Order here</a>
-                                </div>
-                                <!-- .entry-footer" -->
                             </div>
-                            <!-- .col -->
                         </div>
-                        <!-- .container -->
                     </div>
-                    <!-- .hero-content -->
                 </div>
-                <!-- .swiper-slide -->
-            </div>
-            <!-- .swiper-wrapper -->
-
-            <div class="swiper-slide" data-date="2024/12/20"
-                style="
-      background: url('{{ asset('assets/user_assets') }}/images/home-1.jpg') no-repeat;
-      background-size: cover;
-    ">
-                <div class="hero-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col flex flex-column justify-content-center">
-                                <div class="entry-header">
-                                    <div class="countdown flex align-items-center">
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dday"></span>
-                                            <label>Days</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dhour"></span>
-                                            <label>Hours</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dmin"></span>
-                                            <label>Minutes</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dsec"></span>
-                                            <label>Seconds</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-                                    </div>
-                                    <!-- .countdown -->
-
-                                    <h2 class="entry-title">
-                                        2 We have the best events. <br />Get your tiket now!
-                                    </h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <a class="btn gradient-bg" href="#">Order here</a>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .col -->
-                        </div>
-                        <!-- .container -->
-                    </div>
-                    <!-- .hero-content -->
-                </div>
-                <!-- .swiper-slide -->
-            </div>
-            <!-- .swiper-wrapper -->
-
-            <div class="swiper-slide" data-date="2020/05/01"
-                style="
-      background: url('{{ asset('assets/user_assets') }}/images/home-4.jpg') no-repeat;
-      background-size: cover;
-    ">
-                <div class="hero-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col flex flex-column justify-content-center">
-                                <div class="entry-header">
-                                    <div class="countdown flex align-items-center">
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dday"></span>
-                                            <label>Days</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dhour"></span>
-                                            <label>Hours</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dmin"></span>
-                                            <label>Minutes</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-
-                                        <div class="countdown-holder flex align-items-baseline">
-                                            <span class="dsec"></span>
-                                            <label>Seconds</label>
-                                        </div>
-                                        <!-- .countdown-holder -->
-                                    </div>
-                                    <!-- .countdown -->
-
-                                    <h2 class="entry-title">
-                                        3 We have the best events. <br />Get your tiket now!
-                                    </h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <a class="btn gradient-bg" href="#">Order here</a>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .col -->
-                        </div>
-                        <!-- .container -->
-                    </div>
-                    <!-- .hero-content -->
-                </div>
-                <!-- .swiper-slide -->
-            </div>
-            <!-- .swiper-wrapper -->
+            @endforeach
         </div>
-
-        <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
-
-        <!-- Add Arrows -->
         <div class="swiper-button-next flex justify-content-center align-items-center">
             <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -222,18 +92,20 @@
 
                     <div class="entry-content">
                         <p>
-                            Vestibulum eget lacus at mauris sagittis varius. Etiam ut
-                            venenatis dui. Nullam tellus risus, pellentesque at facilisis
-                            et, scelerisque sit amet metus. Duis vel semper turpis, ac
-                            tempus libero. Maecenas id ultrices risus. Aenean nec ornare
-                            ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis
-                            sodales dolor.
+                            Tarfeeh is your ultimate destination for discovering and booking entertainment, sports, and
+                            tourist venues. Whether you’re looking for a fun day at an entertainment center, exploring new
+                            tourist spots, or booking sports facilities, Tarfeeh makes it easy to browse, view photos, and
+                            check prices. With flexible booking options, you can choose your preferred time and date,
+                            ensuring a seamless and personalized experience. Choose Tarfeeh for a hassle-free way to enjoy
+                            the best activities and services in your area!
                         </p>
                     </div>
 
                     <footer class="entry-footer">
-                        <a href="#" class="btn gradient-bg">Read More</a>
-                        <a href="#" class="btn dark">Register Now</a>
+                        <a href="{{ route('user.about') }}" class="btn gradient-bg">Read More</a>
+                        @guest
+                            <a href="/login" class="btn dark">Register Now</a>
+                        @endguest
                     </footer>
                 </div>
             </div>
@@ -247,9 +119,8 @@
                     <div class="featured-events-wrap flex flex-wrap justify-content-between">
                         @foreach ($categories as $index => $category)
                             <div class="event-content-wrap positioning-event-{{ $index + 1 }}">
-
                                 <figure>
-                                    <a href="#">
+                                    <a href="{{ route('venue.category', ['id' => $category->category_id]) }}">
                                         @if ($category->image)
                                             <img class="rounded" src="{{ asset('storage/' . $category->image) }}"
                                                 alt="{{ $category->name }}" />
@@ -273,7 +144,6 @@
         </div>
     </div>
 
-
     <div class="homepage-next-events">
         <div class="container">
             <div class="row">
@@ -296,7 +166,7 @@
                             <figure>
                                 {{-- Display the first image associated with the venue --}}
                                 <a href="#"><img
-                                        src="{{ $venue->images->first() ? asset('storage/' . $venue->images->first()->image) : asset('assets/user_assets/images/default.jpg') }}"
+                                        src="{{ $venue->images->random() ? asset('storage/' . $venue->images->random()->image) : asset('assets/user_assets/images/default.jpg') }}"
                                         alt="{{ $venue->name }}" /></a>
                             </figure>
 
@@ -306,7 +176,8 @@
 
                                 {{-- Display the work time --}}
                                 <div class="posted-date">
-                                    Work Time: <span>{{ $venue->open_time }} - {{ $venue->close_time }}</span>
+                                    Work Time: <span>{{ \Carbon\Carbon::parse($venue->open_time)->format('h:i A') }} -
+                                        {{ \Carbon\Carbon::parse($venue->close_time)->format('h:i A') }}</span>
                                 </div>
                             </header>
 
@@ -317,7 +188,7 @@
 
                             <footer class="entry-footer">
                                 {{-- Link to a booking page or functionality --}}
-                                <a href="{{ route('bookings.create', ['venue_id' => $venue->id]) }}">Book Now</a>
+                                <a href="{{ route('show.venue', $venue->venue_id) }}">Book Now</a>
                             </footer>
                         </div>
                     </div>
@@ -333,189 +204,30 @@
                 <div class="col-12">
                     <header
                         class="regional-events-heading entry-header flex flex-wrap justify-content-between align-items-center">
-                        <h2 class="entry-title">Events in New York</h2>
-
-                        <div class="select-location">
-                            <select>
-                                <option>New York</option>
-                                <option>California</option>
-                                <option>South Carolina</option>
-                            </select>
-                        </div>
+                        <h2 class="entry-title">Random Activities</h2>
                     </header>
 
                     <div class="swiper-container homepage-regional-events-slider">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-1.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">U2 Concert</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
+                            @foreach ($activities as $activity)
+                                <div class="swiper-slide">
+                                    <figure>
+                                        <img class="activity-image" src="{{ asset('storage/' . $activity->venue->image) }}"
+                                            alt="{{ $activity->name }}" />
+                                        <a class="event-overlay-link flex justify-content-center align-items-center"
+                                            href="{{ route('show.venue', $activity->venue->venue_id) }}">+</a>
+                                    </figure>
+                                    <div class="entry-header">
+                                        <h2 class="entry-title">{{ $activity->name }}</h2>
+                                    </div>
+                                    <div class="entry-footer">
+                                        <div class="posted-date">
+                                            Venue: <span>{{ $activity->venue->name ?? 'Unknown Venue' }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-2.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">Broadway Hit</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
-                                    </div>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-3.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">Gallery Exibition</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
-                                    </div>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-4.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">Art Gallery</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
-                                    </div>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-5.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">Music Concert</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
-                                    </div>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-6.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">EDM Festival</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
-                                    </div>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
-
-                            <div class="swiper-slide">
-                                <figure>
-                                    <img src= "{{ asset('assets/user_assets/images') }}/event-slider-1.jpg"
-                                        alt="" />
-
-                                    <a class="event-overlay-link flex justify-content-center align-items-center"
-                                        href="#">+</a>
-                                </figure>
-                                <!-- .hero-image -->
-
-                                <div class="entry-header">
-                                    <h2 class="entry-title">U2 Concert</h2>
-                                </div>
-                                <!--- .entry-header -->
-
-                                <div class="entry-footer">
-                                    <div class="posted-date">
-                                        Saturday <span>Jan 27, 2018</span>
-                                    </div>
-                                </div>
-                                <!-- .entry-footer" -->
-                            </div>
-                            <!-- .swiper-slide -->
+                            @endforeach
                         </div>
-                        <!-- .swiper-wrapper -->
-
                         <!-- Add Arrows -->
                         <div class="swiper-button-next flex justify-content-center align-items-center">
                             <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -523,14 +235,14 @@
                                         d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z" />
                                 </svg></span>
                         </div>
-
                         <div class="swiper-button-prev flex justify-content-center align-items-center">
                             <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                        d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z" />
+                                        d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50-50q-10-10-23-10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z" />
                                 </svg></span>
                         </div>
                     </div>
+
                     <!-- .swiper-container -->
 
                     <div class="events-partners">
@@ -539,28 +251,28 @@
                         </header>
 
                         <div class="events-partners-logos flex flex-wrap justify-content-between align-items-center">
-                            <div class="event-partner-logo">
-                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/pixar.png"
+                            <div class="event-partner-logo ">
+                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/p1-logo.png"
                                         alt="" /></a>
                             </div>
 
                             <div class="event-partner-logo">
-                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/the-pirate.png"
+                                <a href="#"><img style="max-width: 58%"
+                                        src= "{{ asset('assets/user_assets/images') }}/p2-logo.jpg" alt="" /></a>
+                            </div>
+
+                            <div class="event-partner-logo">
+                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/p3-logo.png"
                                         alt="" /></a>
                             </div>
 
                             <div class="event-partner-logo">
-                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/himalayas.png"
+                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/p4-logo.png"
                                         alt="" /></a>
                             </div>
 
                             <div class="event-partner-logo">
-                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/sa.png"
-                                        alt="" /></a>
-                            </div>
-
-                            <div class="event-partner-logo">
-                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/south-porth.png"
+                                <a href="#"><img src= "{{ asset('assets/user_assets/images') }}/p5-logo.png"
                                         alt="" /></a>
                             </div>
 
@@ -595,34 +307,5 @@
         </div>
     </div>
 
-    <div class="newsletter-subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <header class="entry-header">
-                        <h2 class="entry-title">
-                            Subscribe to our newsletter to get the latest trends & news
-                        </h2>
-                        <p>Join our database NOW!</p>
-                    </header>
 
-                    <div class="newsletter-form">
-                        <form class="flex flex-wrap justify-content-center align-items-center">
-                            <div class="col-md-12 col-lg-3">
-                                <input type="text" placeholder="Name" />
-                            </div>
-
-                            <div class="col-md-12 col-lg-6">
-                                <input type="email" placeholder="Your e-mail" />
-                            </div>
-
-                            <div class="col-md-12 col-lg-3">
-                                <input class="btn gradient-bg" type="submit" value="Subscribe" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection('content')

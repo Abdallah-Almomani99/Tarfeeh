@@ -4,7 +4,7 @@
 
 @section('content')
 
-    {{-- @if ($errors->all())
+    @if ($errors->all())
         <div>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -14,7 +14,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif --}}
+    @endif
 
     <div class="col-sm-12 col-xl-8">
         <div class="bg-light rounded h-100 p-4">
@@ -51,6 +51,27 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
+                <div class="row mb-3">
+                    <label for="category_id" class="col-sm-2 col-form-label">Category</label>
+                    <div class="col-sm-10">
+                        <select name="category_id" class="form-select">
+                            <option value="" disabled>Select Category</option>
+                            @foreach ($categories as $category)
+                                <!-- Assuming $categories is passed from the controller -->
+                                <option value="{{ $category->category_id }}"
+                                    {{ old('category_id', $activity->category->category_id) == $category->category_id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('category_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
 
                 <div class="row mb-3">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>

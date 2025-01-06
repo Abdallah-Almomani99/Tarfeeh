@@ -17,9 +17,7 @@
             @include('layouts.content')
 
         </div>
-
-    </div>
-    @include('layouts.partials.scripts')
+        @include('layouts.partials.scripts')
 </body>
 
 </html>

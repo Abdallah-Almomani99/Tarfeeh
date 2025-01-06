@@ -28,12 +28,21 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        // dd(redirect()->route('venue.profile.show', ['id' => Auth::user()->id]));
+        // Check user type and redirect accordingly
         if (Auth::user()->user_type === 'admin') {
             return redirect()->intended('/admin/dashboard');
         }
 
-        return redirect()->route('user.home');
+        if (Auth::user()->user_type === 'venue') {
+            // Redirect to venue profile page
+            // dd(redirect()->route('venue.profile.show', ['id' => Auth::user()->id]));
+            // return redirect()->route('venue.profile.show', ['id' => Auth::user()->id]);
+
+            return redirect()->route('venue.details');
+        }
+
+        return redirect()->route('show.category');
     }
 
     /**
@@ -47,6 +56,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/home');
     }
 }
